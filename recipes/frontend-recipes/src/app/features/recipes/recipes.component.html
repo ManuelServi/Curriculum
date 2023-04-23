@@ -1,0 +1,36 @@
+<form #form="ngForm" (submit)="switchRecipe(form)">
+  <input type="text" name="title" [ngModel]="activeRecipe.title" placeholder="Inserisci titolo ricetta" NgModel>
+  <input type="text" name="ingredients" [ngModel]="activeRecipe.ingredients" placeholder="Inserisci ingredienti ricetta" NgModel>
+  <input type="text" name="description" [ngModel]="activeRecipe.ingredients" placeholder="Inserisci descrizione ricetta" NgModel>
+  <input type="number" name="time" [ngModel]="activeRecipe.time" placeholder="Inserisci tempo ricetta" NgModel>
+  <input type="text" name="category" [ngModel]="activeRecipe.category" placeholder="Inserisci categoria ricetta" NgModel>
+  <input type="text" name="level" [ngModel]="activeRecipe.level" placeholder="Inserisci livello ricetta" NgModel>
+  <button type="submit" class="btn btn-success"> {{ activeRecipe ? "Aggiungi" : "Modifica"}}</button>
+ <button class="btn btn-primary" (click)="resetRecipe()">Reset</button>
+</form>
+
+<table class="table table-striped table-dark">
+<thead>
+  <tr>
+    <th>#</th>
+    <th>Titolo</th>
+    <th>Ingredienti</th>
+    <th>Descrizione</th>
+    <th>Tempo</th>
+    <th>Categoria</th>
+    <th>Difficoltà</th>
+    <th></th>
+</thead>
+  <tbody>
+  <tr *ngFor="let recipe of store.recipes, index as i">
+    <td>{{ i+1 }}</td>
+    <td>{{recipe.title}}</td>
+    <td>{{recipe.ingredients}}</td>
+    <td>{{recipe.description}}</td>
+    <td>{{recipe.time}}</td>
+    <td>{{recipe.category.title}}</td>
+    <td>{{recipe.level.title}}</td>
+    <td><button class="btn btn-danger" (click)="delRecipe(recipe)">Delete</button></td>
+  </tr>
+  </tbody>
+</table>
